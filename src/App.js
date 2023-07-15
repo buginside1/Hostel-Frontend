@@ -34,7 +34,7 @@ import SingleBookingDetails from "./screens/SingleBookingDetails";
 import NotFound from "./screens/NotFound";
 import { HelmetProvider } from "react-helmet-async";
 const App = () => {
-  axios.defaults.baseURL = "https://hostel-yq4k.onrender.com";
+  axios.defaults.baseURL = "http://localhost:4000";
   const [stripeApiKey, setStripeApiKey] = useState("");
   const isAuthenticated = useSelector(
     (state) => state.userState.isAuthenticated
