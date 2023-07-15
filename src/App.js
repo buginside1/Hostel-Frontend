@@ -34,7 +34,7 @@ import SingleBookingDetails from "./screens/SingleBookingDetails";
 import NotFound from "./screens/NotFound";
 import { HelmetProvider } from "react-helmet-async";
 const App = () => {
-  axios.defaults.baseURL = "http://localhost:4000";
+  // axios.defaults.baseURL = "http://localhost:4000";
   const [stripeApiKey, setStripeApiKey] = useState("");
   const isAuthenticated = useSelector(
     (state) => state.userState.isAuthenticated
@@ -50,7 +50,7 @@ const App = () => {
 
   useEffect(() => {
     dispatch(getUserAction());
-  }, [isAuthenticated,dispatch]);
+  }, [dispatch]);
 
   useEffect(() => {
     if (isAuthenticated) {
