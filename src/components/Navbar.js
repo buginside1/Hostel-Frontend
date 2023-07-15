@@ -61,7 +61,7 @@ const Navbar = () => {
               <AccountCircleIcon className="text-blue-400 cursor-pointer" />
             </span>
             <span className="capitalize text-blue-400 font-medium hidden md:block cursor-pointer">
-              {isAuthenticated ? user.name : "Sign in"}
+              {isAuthenticated ? user?.name : "Sign in"}
             </span>
           </div>
 
