@@ -1,9 +1,8 @@
 {
-    "rewrites": [
-      {
-        "source": "*",
-        "destination": "https://hostel-yq4k.onrender.com"
-      }
-    ]
-  }
-  
+  "rewrites": [
+    {
+      "source": "/api/:path*",
+      "destination": "https://hostel-yq4k.onrender.com/api/:path*"
+    }
+  ]
+}
