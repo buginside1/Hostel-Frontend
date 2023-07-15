@@ -50,7 +50,7 @@ const App = () => {
 
   useEffect(() => {
     dispatch(getUserAction());
-  }, [dispatch]);
+  }, [isAuthenticated,dispatch]);
 
   useEffect(() => {
     if (isAuthenticated) {
