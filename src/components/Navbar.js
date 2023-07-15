@@ -99,9 +99,9 @@ const Navbar = () => {
                 <Fragment>
                   <div className="text-center">
                     <h2 className="capitalize text-xl font-semibold">
-                      Hi, {user.name}
+                      Hi, {user?.name}
                     </h2>
-                    <span>Email: {user.email}</span>
+                    <span>Email: {user?.email}</span>
                   </div>
                   <button
                     onClick={accountHandler}
