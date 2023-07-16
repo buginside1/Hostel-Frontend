@@ -8,7 +8,7 @@ import {io} from 'socket.io-client';
 
 
 const Chat = () => {
-    const { state: hotel } = useLocation();
+    const { state: hostel } = useLocation();
     const { user } = useSelector((state) => state.userState);
     const [messageList, setMessageList] = useState([]);
     const [currentMessage, setCurrentMessage] = useState("");
@@ -29,15 +29,15 @@ const Chat = () => {
       }, [socket]);
     
     useEffect(() => {
-        if (hotel && socket) {
-            socket.emit("join-hotel-chat", hotel._id);
+        if (hostel && socket) {
+            socket.emit("join-hostel-chat", hostel._id);
       }
-    }, [hotel, socket])
+    }, [hostel, socket])
 
       const sendMessage = async () => {
         if (currentMessage !== "" && socket) {
           const messageData = {
-            hotel: hotel._id,
+            hostel: hostel._id,
             author: user,
             message: currentMessage,
             time:
@@ -55,9 +55,9 @@ const Chat = () => {
 
     return (
         <Fragment>
-            { !hotel ? <NotFound /> : (
+            { !hostel ? <NotFound /> : (
                 <Fragment>
-                    <Meta title={ `${hotel?.name}'s Live Chat ` } />
+                    <Meta title={ `${hostel?.name}'s Live Chat ` } />
                     <div className="chat-window mx-auto mt-20">
                         <div className="chat-header">
                             <p>you are connected</p>
