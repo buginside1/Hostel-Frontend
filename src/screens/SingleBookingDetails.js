@@ -93,17 +93,17 @@ const SingleBookingDetails = () => {
                         Hostel Name:
                       </span>
                       <Link
-                        to={`/hostel/${booking?.hostel._id}`}
+                        to={`/hostel/${booking?.hostel?._id}`}
                         className="font-mono text-blue-700"
                       >
-                        {booking?.hostel.name}
+                        {booking?.hostel?.name}
                       </Link>
                     </div>
                     <div className="ml-8 flex  mb-4">
                       <span className="font-medium inline-block  w-28">
                         Room Name:
                       </span>
-                      <span className="font-mono">{booking?.room.name}</span>
+                      <span className="font-mono">{booking?.room?.name}</span>
                     </div>
                     <div className="ml-8 flex mb-4">
                       <span className="font-medium inline-block  w-28">
