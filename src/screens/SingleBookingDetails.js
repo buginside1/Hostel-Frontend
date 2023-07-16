@@ -122,7 +122,7 @@ const SingleBookingDetails = () => {
                         PricePerDay(per day):
                       </span>
                       <span className="font-mono">
-                        {booking?.room.PricePerDay} taka
+                        {booking?.room.PricePerDay} Rs
                       </span>
                     </div>
                   </div>
@@ -164,13 +164,13 @@ const SingleBookingDetails = () => {
                       <span className="font-medium inline-block  w-28">
                         PricePerDay({dates?.length}):
                       </span>
-                      <span className="font-mono">{PricePerDays} taka</span>
+                      <span className="font-mono">{PricePerDays} Rs</span>
                     </div>
                     <div className="ml-8 flex mb-4">
                       <span className="font-medium inline-block  w-28">
                         Vat:
                       </span>
-                      <span className="font-mono">{vat} taka</span>
+                      <span className="font-mono">{vat} Rs</span>
                     </div>
                     <div className="ml-8 flex mb-4">
                       <span className="font-medium inline-block w-28">

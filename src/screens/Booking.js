@@ -245,7 +245,7 @@ const Booking = () => {
                       <span className="font-medium inline-block  w-28">
                         Vat:
                       </span>
-                      <span className="font-mono">{vat} taka</span>
+                      <span className="font-mono">{vat} Rs</span>
                     </div> */}
                     <div className="ml-8 flex mb-4">
                       <span className="font-medium inline-block w-28">

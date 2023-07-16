@@ -122,7 +122,7 @@ const BookingDetails = () => {
                         Price:
                       </span>
                       <span className="font-mono">
-                        {booking?.room.PricePerDay} taka
+                        {booking?.room.PricePerDay} Rs
                       </span>
                     </div>
                   </div>
@@ -160,24 +160,24 @@ const BookingDetails = () => {
                         className="py-2 px-1 sm:px-2 rounded-md border border-solid border-gray-400 text-gray-700 font-mono break-all resize-none"
                       />
                     </div>
-                    <div className="ml-8 flex mb-4">
+                    {/* <div className="ml-8 flex mb-4">
                       <span className="font-medium inline-block  w-28">
                         PricePerDay({dates?.length}):
                       </span>
-                      <span className="font-mono">{PricePerDays} taka</span>
+                      <span className="font-mono">{PricePerDays} Rs</span>
                     </div>
                     <div className="ml-8 flex mb-4">
                       <span className="font-medium inline-block  w-28">
                         Vat:
                       </span>
-                      <span className="font-mono">{vat} taka</span>
-                    </div>
+                      <span className="font-mono">{vat} Rs</span>
+                    </div> */}
                     <div className="ml-8 flex mb-4">
                       <span className="font-medium inline-block w-28">
-                        Total PricePerDay:
+                        Total Price:
                       </span>
                       <span className="font-mono">
-                        {booking?.totalPricePerDay} taka
+                        {booking?.totalPricePerDay} Rs
                       </span>
                     </div>
                     <div className="ml-8 flex mb-4">
