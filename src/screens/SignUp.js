@@ -89,7 +89,7 @@ const SignUp = () => {
               </div>
 
               {/* <p className="mt-5 w-full sm:w-2/4 md:w-2/3 lg:w-1/3 text-center">
-                By signing up, I agree to the Hotels{" "}
+                By signing up, I agree to the Hostels{" "}
                 <button className="text-blue-500">Terms and Conditions </button>{" "}
                 and <button className="text-blue-500">Privacy Statement</button>
                 .

@@ -5,7 +5,7 @@ import { Fragment, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
 import Loader from "../components/Loader";
-import { getRoomAction } from "../redux/actions/hotelAction";
+import { getRoomAction } from "../redux/actions/hostelAction";
 import { addDays, format } from "date-fns";
 import { setError } from "../redux/slices/appSlice";
 import NotFound from "./NotFound";
@@ -14,7 +14,7 @@ import Meta from "../utils/Meta";
 const Booking = () => {
   const id = useParams().id;
   const user = useSelector((state) => state.userState.user);
-  const { room, isLoading } = useSelector((state) => state.hotelState);
+  const { room, isLoading } = useSelector((state) => state.hostelState);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [name, setName] = useState("");
@@ -41,7 +41,7 @@ const Booking = () => {
     totalPricePerDay,
     dates,
     room: id,
-    hotel: room?.hotel._id,
+    hostel: room?.hostel._id,
   };
 
   useEffect(() => {
@@ -149,7 +149,7 @@ const Booking = () => {
                       <span className="font-medium inline-block  w-28">
                         Hostel Name:
                       </span>
-                      <span className="font-mono">{room?.hotel.name}</span>
+                      <span className="font-mono">{room?.hostel.name}</span>
                     </div>
                     {/* <div className="ml-8 flex  mb-4">
                       <span className="font-medium inline-block  w-28">

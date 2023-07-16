@@ -1,7 +1,7 @@
 import { Fragment, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { getHotelAction } from "../redux/actions/hotelAction";
+import { getHostelAction } from "../redux/actions/hostelAction";
 import { Slide } from "react-slideshow-image";
 import picture from "../images/nopicture.jpg";
 import AddIcon from "@mui/icons-material/Add";
@@ -13,34 +13,34 @@ import RoomCard from "../components/RoomCard";
 import NotFound from "./NotFound";
 import Meta from "../utils/Meta";
 
-const Hotel = () => {
+const Hostel = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { hotel, isLoading } = useSelector((state) => state.hotelState);
+  const { hostel, isLoading } = useSelector((state) => state.hostelState);
 
   useEffect(() => {
-    dispatch(getHotelAction(id));
+    dispatch(getHostelAction(id));
   }, [id, dispatch]);
 
   const liveChatHandler = () => {
-    navigate("/chat", { state: hotel });
+    navigate("/chat", { state: hostel });
   };
 
   return (
     <Fragment>
-      <Meta title={hotel?.name} />
+      <Meta title={hostel?.name} />
       <Fragment>
         {isLoading ? (
           <Loader />
         ) : (
           <Fragment>
-            {!hotel ? (
+            {!hostel ? (
               <NotFound />
             ) : (
               <div className="flex flex-col md:min-h-60 gap-8 bg-gray-200  pt-4 md:items-center">
                 <div className="h-60 md:w-7/12">
-                  {hotel?.pictures.length < 1 ? (
+                  {hostel?.pictures.length < 1 ? (
                     <div className="h-60 -mr-[21.33px]">
                       <img
                         src={picture}
@@ -59,7 +59,7 @@ const Hotel = () => {
                         <ArrowForwardIosIcon className="text-zinc-200" />
                       }
                     >
-                      {hotel?.pictures.map((pic) => (
+                      {hostel?.pictures.map((pic) => (
                         <div className="h-60" key={pic.public_id}>
                           <img
                             src={pic.url}
@@ -74,7 +74,7 @@ const Hotel = () => {
                 <div className="md:w-7/12 mx-4 md:my-6 mb-6">
                   <div className="flex justify-between">
                     <h2 className="text-xl capitalize font-semibold">
-                      {hotel?.name}
+                      {hostel?.name}
                     </h2>
                     <div className="flex gap-2">
                       <button
@@ -91,16 +91,16 @@ const Hotel = () => {
                       </a>
                     </div>
                   </div>
-                  <h4 className="font-medium">{hotel?.location}</h4>
-                  <p className="my-3">{hotel?.description}</p>
+                  <h4 className="font-medium">{hostel?.location}</h4>
+                  <p className="my-3">{hostel?.description}</p>
                   <span className="font-medium text-gray-700">
                     <LocationOnIcon className="mb-1" />
                     <span className=" font-normal">
-                      {hotel?.distance}m from zero point.
+                      {hostel?.distance}m from zero point.
                     </span>
                   </span>
                   <div className="flex gap-4 flex-wrap mt-6">
-                    {hotel?.specification?.map((spec) => (
+                    {hostel?.specification?.map((spec) => (
                       <div
                         key={spec}
                         className="py-2 px-3 bg-gray-100 rounded-lg"
@@ -116,7 +116,7 @@ const Hotel = () => {
                     Choose your room
                   </span>
                   <div className="flex flex-wrap gap-4 justify-center mt-12">
-                    {hotel?.rooms.map((room) => (
+                    {hostel?.rooms.map((room) => (
                       <RoomCard key={room._id} room={room} />
                     ))}
                   </div>
@@ -129,4 +129,4 @@ const Hotel = () => {
     </Fragment>
   );
 };
-export default Hotel;
+export default Hostel;

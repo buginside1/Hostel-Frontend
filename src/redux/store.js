@@ -1,12 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 import appReducer from "./slices/appSlice";
 import userReducer from "./slices/userSlice";
-import hotelReducer from "./slices/hotelSlice";
+import hostelReducer from "./slices/hostelSlice";
 
 const reducer = {
   appState: appReducer,
   userState: userReducer,
-  hotelState: hotelReducer,
+  hostelState: hostelReducer,
 };
 
 const store = configureStore({

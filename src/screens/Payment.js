@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { setError } from "../redux/slices/appSlice";
-import { newBookingAction } from "../redux/actions/hotelAction";
+import { newBookingAction } from "../redux/actions/hostelAction";
 import {
   CardNumberElement,
   CardCvcElement,
@@ -14,7 +14,7 @@ import {
   useStripe,
   useElements,
 } from "@stripe/react-stripe-js";
-import { setHasBooked } from "../redux/slices/hotelSlice";
+import { setHasBooked } from "../redux/slices/hostelSlice";
 import Meta from "../utils/Meta";
 
 const Payment = () => {
@@ -24,7 +24,7 @@ const Payment = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const bookingDetails = JSON.parse(sessionStorage.getItem("bookingDetails"));
-  const hasBooked = useSelector((state) => state.hotelState.hasBooked);
+  const hasBooked = useSelector((state) => state.hostelState.hasBooked);
 
   useEffect(() => {
     if (hasBooked) {
@@ -80,7 +80,7 @@ const Payment = () => {
                 totalPricePerDay: bookingDetails.totalPricePerDay,
                 phone: bookingDetails.phone,
               },
-              bookingDetails.hotel,
+              bookingDetails.hostel,
               bookingDetails.room
             )
           );

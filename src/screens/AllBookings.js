@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   changeBookingStatus,
   getAllBookings,
-} from "../redux/actions/hotelAction";
+} from "../redux/actions/hostelAction";
 import Loader from "../components/Loader";
 import { Link } from "react-router-dom";
 import LaunchIcon from "@mui/icons-material/Launch";
@@ -34,7 +34,7 @@ import Meta from "../utils/Meta";
 
 const AllBookings = () => {
   const dispatch = useDispatch();
-  const { isLoading, allBookings } = useSelector((state) => state.hotelState);
+  const { isLoading, allBookings } = useSelector((state) => state.hostelState);
   const [open, setOpen] = useState(false);
   const [status, setStatus] = useState("");
   const [bookingRef, setBookingRef] = useState(undefined);

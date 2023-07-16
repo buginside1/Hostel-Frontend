@@ -1,34 +1,34 @@
 import { setError, setSuccess } from "../slices/appSlice";
 import {
   setLoader,
-  setHotels,
+  setHostels,
   setHasSearched,
-  setHotel,
+  setHostel,
   setRoom,
   setBookings,
   setHasBooked,
   setBooking,
-  setAllHotels,
-  setIsHotelCreated,
+  setAllHostels,
+  setIsHostelCreated,
   setIsRoomCreated,
-  setIsHotelUPdated,
+  setIsHostelUPdated,
   setIsRoomUpdated,
   setAllBookings,
-} from "../slices/hotelSlice";
+} from "../slices/hostelSlice";
 import axios from "axios";
 
-// search hotel
-export const searchHotelsAction =
+// search hostel
+export const searchHostelsAction =
   ({ location, person, room, d1, d2 }) =>
   async (dispatch) => {
     try {
       dispatch(setHasSearched(true));
       dispatch(setLoader(true));
       const { data } = await axios.get(
-        `/api/v1/hotels?location=${location}&person=${person}&room=${room}&d1=${d1}&d2=${d2}`
+        `/api/v1/hostels?location=${location}&person=${person}&room=${room}&d1=${d1}&d2=${d2}`
       );
 
-      dispatch(setHotels(data.hotels));
+      dispatch(setHostels(data.hostels));
       dispatch(setLoader(false));
     } catch (err) {
       dispatch(setLoader(false));
@@ -36,14 +36,14 @@ export const searchHotelsAction =
     }
   };
 
-// get featured hotels
-export const getFeturedHotels = () => async (dispatch) => {
+// get featured hostels
+export const getFeturedHostels = () => async (dispatch) => {
   try {
     dispatch(setHasSearched(false));
     dispatch(setLoader(true));
-    const { data } = await axios.get(`/api/v1/hotels`);
+    const { data } = await axios.get(`/api/v1/hostels`);
 
-    dispatch(setHotels(data.hotels));
+    dispatch(setHostels(data.hostels));
     dispatch(setLoader(false));
   } catch (err) {
     dispatch(setLoader(false));
@@ -51,13 +51,13 @@ export const getFeturedHotels = () => async (dispatch) => {
   }
 };
 
-// get hotel details
-export const getHotelAction = (id) => async (dispatch) => {
+// get hostel details
+export const getHostelAction = (id) => async (dispatch) => {
   try {
     dispatch(setLoader(true));
-    const { data } = await axios.get(`/api/v1/hotel/${id}`);
+    const { data } = await axios.get(`/api/v1/hostel/${id}`);
 
-    dispatch(setHotel(data.hotel));
+    dispatch(setHostel(data.hostel));
     dispatch(setLoader(false));
   } catch (err) {
     dispatch(setLoader(false));
@@ -80,9 +80,9 @@ export const getRoomAction = (id) => async (dispatch) => {
 
 // new booking
 export const newBookingAction =
-  (formData, hotelId, roomId) => async (dispatch) => {
+  (formData, hostelId, roomId) => async (dispatch) => {
     try {
-      await axios.post(`/api/v1/hotel/${hotelId}/${roomId}/book`, formData, {
+      await axios.post(`/api/v1/hostel/${hostelId}/${roomId}/book`, formData, {
         headers: { "Content-Type": "application/json" },
       });
 
@@ -120,13 +120,13 @@ export const getUserBooking = (id) => async (dispatch) => {
   }
 };
 
-// get all hotels -- admin
-export const getAllHotels = () => async (dispatch) => {
+// get all hostels -- admin
+export const getAllHostels = () => async (dispatch) => {
   try {
     dispatch(setLoader(true));
-    const { data } = await axios.get(`/api/v1/hotels`);
+    const { data } = await axios.get(`/api/v1/hostels`);
 
-    dispatch(setAllHotels(data.hotels));
+    dispatch(setAllHostels(data.hostels));
     dispatch(setLoader(false));
   } catch (err) {
     dispatch(setLoader(false));
@@ -134,11 +134,11 @@ export const getAllHotels = () => async (dispatch) => {
   }
 };
 
-// upload hotel picture --admin
-export const uploadHotelPicture = (formData, id) => async (dispatch) => {
+// upload hostel picture --admin
+export const uploadHostelPicture = (formData, id) => async (dispatch) => {
   try {
     dispatch(setLoader(true));
-    await axios.put(`/api/v1/hotel/${id}/images`, formData, {
+    await axios.put(`/api/v1/hostel/${id}/images`, formData, {
       headers: { "Content-Type": "multipart/form-data" },
     });
 
@@ -167,14 +167,14 @@ export const uploadRoomPicture = (formData, id) => async (dispatch) => {
   }
 };
 
-// delete hotel -- admin
-export const deleteHotel = (id) => async (dispatch) => {
+// delete hostel -- admin
+export const deleteHostel = (id) => async (dispatch) => {
   try {
     dispatch(setLoader(true));
-    const { data } = await axios.delete(`/api/v1/hotel/${id}`);
+    const { data } = await axios.delete(`/api/v1/hostel/${id}`);
 
-    dispatch(setAllHotels(data.hotels));
-    dispatch(setSuccess("Hotel deleted successfully"));
+    dispatch(setAllHostels(data.hostels));
+    dispatch(setSuccess("Hostel deleted successfully"));
     dispatch(setLoader(false));
   } catch (err) {
     dispatch(setError(err.response.data.message));
@@ -188,7 +188,7 @@ export const deleteRoom = (id) => async (dispatch) => {
     dispatch(setLoader(true));
     const { data } = await axios.delete(`/api/v1/room/${id}`);
 
-    dispatch(setHotel(data.hotel));
+    dispatch(setHostel(data.hostel));
     dispatch(setSuccess("Room deleted successfully"));
     dispatch(setLoader(false));
   } catch (err) {
@@ -197,32 +197,32 @@ export const deleteRoom = (id) => async (dispatch) => {
   }
 };
 
-// create new hotel --admin
-export const createHotel = (formData) => async (dispatch) => {
+// create new hostel --admin
+export const createHostel = (formData) => async (dispatch) => {
   try {
     dispatch(setLoader(true));
-    await axios.post(`/api/v1/hotel/new`, formData, {
+    await axios.post(`/api/v1/hostel/new`, formData, {
       headers: { "Content-Type": "application/json" },
     });
 
-    dispatch(setSuccess("Hotel Created successfully"));
-    dispatch(setIsHotelCreated(true));
+    dispatch(setSuccess("Hostel Created successfully"));
+    dispatch(setIsHostelCreated(true));
   } catch (err) {
     dispatch(setError(err.response.data.message));
     dispatch(setLoader(false));
   }
 };
 
-// update hotel --admin
-export const updateHotel = (formData, hotelId) => async (dispatch) => {
+// update hostel --admin
+export const updateHostel = (formData, hostelId) => async (dispatch) => {
   try {
     dispatch(setLoader(true));
-    await axios.put(`/api/v1/hotel/${hotelId}`, formData, {
+    await axios.put(`/api/v1/hostel/${hostelId}`, formData, {
       headers: { "Content-Type": "application/json" },
     });
 
     dispatch(setSuccess("Hostel Updated successfully"));
-    dispatch(setIsHotelUPdated(true));
+    dispatch(setIsHostelUPdated(true));
   } catch (err) {
     dispatch(setError(err.response.data.message));
     dispatch(setLoader(false));
@@ -230,10 +230,10 @@ export const updateHotel = (formData, hotelId) => async (dispatch) => {
 };
 
 // create new room --admin
-export const createRoom = (formData, hotelId) => async (dispatch) => {
+export const createRoom = (formData, hostelId) => async (dispatch) => {
   try {
     dispatch(setLoader(true));
-    await axios.post(`/api/v1/hotel/${hotelId}/room/new`, formData, {
+    await axios.post(`/api/v1/hostel/${hostelId}/room/new`, formData, {
       headers: { "Content-Type": "application/json" },
     });
 

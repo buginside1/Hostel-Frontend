@@ -2,36 +2,36 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   isLoading: false,
-  hotels: undefined,
-  hotel: undefined,
+  hostels: undefined,
+  hostel: undefined,
   hasSearched: false,
   room: undefined,
   booking: undefined,
   hasBooked: false,
   bookings: [],
-  allHotels: [],
-  isHotelCreated: false,
+  allHostels: [],
+  isHostelCreated: false,
   isRoomCreated: false,
-  isHotelUpdated: false,
+  isHostelUpdated: false,
   isRoomUpdated: false,
   allBookings: [],
 };
 
-const hotelSlice = createSlice({
-  name: "hotel",
+const hostelSlice = createSlice({
+  name: "hostel",
   initialState,
   reducers: {
     setLoader: (state, action) => {
       state.isLoading = action.payload;
     },
-    setHotels: (state, action) => {
-      state.hotels = action.payload;
+    setHostels: (state, action) => {
+      state.hostels = action.payload;
     },
     setHasSearched: (state, action) => {
       state.hasSearched = action.payload;
     },
-    setHotel: (state, action) => {
-      state.hotel = action.payload;
+    setHostel: (state, action) => {
+      state.hostel = action.payload;
     },
     setRoom: (state, action) => {
       state.room = action.payload;
@@ -45,17 +45,17 @@ const hotelSlice = createSlice({
     setBooking: (state, action) => {
       state.booking = action.payload;
     },
-    setAllHotels: (state, action) => {
-      state.allHotels = action.payload;
+    setAllHostels: (state, action) => {
+      state.allHostels = action.payload;
     },
-    setIsHotelCreated: (state, action) => {
-      state.isHotelCreated = action.payload;
+    setIsHostelCreated: (state, action) => {
+      state.isHostelCreated = action.payload;
     },
     setIsRoomCreated: (state, action) => {
       state.isRoomCreated = action.payload;
     },
-    setIsHotelUPdated: (state, action) => {
-      state.isHotelUpdated = action.payload;
+    setIsHostelUPdated: (state, action) => {
+      state.isHostelUpdated = action.payload;
     },
     setIsRoomUpdated: (state, action) => {
       state.isRoomUpdated = action.payload;
@@ -68,19 +68,19 @@ const hotelSlice = createSlice({
 
 export const {
   setLoader,
-  setHotels,
+  setHostels,
   setHasSearched,
-  setHotel,
+  setHostel,
   setRoom,
   setBookings,
   setHasBooked,
   setBooking,
-  setAllHotels,
-  setIsHotelCreated,
+  setAllHostels,
+  setIsHostelCreated,
   setIsRoomCreated,
-  setIsHotelUPdated,
+  setIsHostelUPdated,
   setIsRoomUpdated,
   setAllBookings,
-} = hotelSlice.actions;
+} = hostelSlice.actions;
 
-export default hotelSlice.reducer;
+export default hostelSlice.reducer;

@@ -5,7 +5,7 @@ const Meta = ({ title, description }) => {
     return (
         <Helmet>
             <title>{title}</title>
-            <meta name="description" content={!description ? "Hotel Booking Application" : description} />
+            <meta name="description" content={!description ? "Hostel Booking Application" : description} />
         </Helmet>
     )
 }

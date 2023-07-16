@@ -1,7 +1,7 @@
 import { useParams, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { Fragment, useEffect, useState } from "react";
-import { getBookingDetails } from "../redux/actions/hotelAction";
+import { getBookingDetails } from "../redux/actions/hostelAction";
 import Loader from "../components/Loader";
 import { format } from "date-fns";
 import NotFound from "./NotFound";
@@ -11,7 +11,7 @@ const SingleBookingDetails = () => {
   const dispatch = useDispatch();
   const id = useParams().id;
   const [dates, setDates] = useState([]);
-  const { isLoading, booking } = useSelector((state) => state.hotelState);
+  const { isLoading, booking } = useSelector((state) => state.hostelState);
   const user = useSelector((state) => state.userState.user);
   const PricePerDays = booking?.room.PricePerDay * dates?.length;
   const vat = booking?.room.PricePerDay * dates?.length * (18 / 100);
@@ -93,10 +93,10 @@ const SingleBookingDetails = () => {
                         Hostel Name:
                       </span>
                       <Link
-                        to={`/hotel/${booking?.hotel._id}`}
+                        to={`/hostel/${booking?.hostel._id}`}
                         className="font-mono text-blue-700"
                       >
-                        {booking?.hotel.name}
+                        {booking?.hostel.name}
                       </Link>
                     </div>
                     <div className="ml-8 flex  mb-4">

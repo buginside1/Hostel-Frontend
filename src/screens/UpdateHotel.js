@@ -16,8 +16,8 @@ import {
 import { Fragment, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { setIsHotelUPdated } from "../redux/slices/hotelSlice";
-import { getHotelAction, updateHotel } from "../redux/actions/hotelAction";
+import { setIsHostelUPdated } from "../redux/slices/hostelSlice";
+import { getHostelAction, updateHostel } from "../redux/actions/hostelAction";
 import Loader from "../components/Loader";
 import Meta from "../utils/Meta";
 
@@ -47,14 +47,14 @@ const CustomSelect = styled(Select)(() => ({
   },
 }));
 
-const UpdateHotel = () => {
+const UpdateHostel = () => {
   const [specification, setSpecification] = useState([]);
   const [name, setName] = useState("");
   const [location, setLocation] = useState("");
   const [distance, setDistance] = useState("");
   const [description, setDescription] = useState("");
-  const { isHotelUpdated, isLoading, hotel } = useSelector(
-    (state) => state.hotelState
+  const { isHostelUpdated, isLoading, hostel } = useSelector(
+    (state) => state.hostelState
   );
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -62,26 +62,26 @@ const UpdateHotel = () => {
 
   useEffect(() => {
     if (id) {
-      dispatch(getHotelAction(id));
+      dispatch(getHostelAction(id));
     }
   }, [id, dispatch]);
 
   useEffect(() => {
-    if (hotel) {
-      setName(hotel.name);
-      setLocation(hotel.location);
-      setDistance(hotel.distance);
-      setDescription(hotel.description);
-      setSpecification(hotel.specification);
+    if (hostel) {
+      setName(hostel.name);
+      setLocation(hostel.location);
+      setDistance(hostel.distance);
+      setDescription(hostel.description);
+      setSpecification(hostel.specification);
     }
-  }, [hotel]);
+  }, [hostel]);
 
   useEffect(() => {
-    if (isHotelUpdated) {
-      navigate("/admin/hotels");
-      dispatch(setIsHotelUPdated(false));
+    if (isHostelUpdated) {
+      navigate("/admin/hostels");
+      dispatch(setIsHostelUPdated(false));
     }
-  }, [isHotelUpdated, dispatch, navigate]);
+  }, [isHostelUpdated, dispatch, navigate]);
 
   const handleChange = (event) => {
     const {
@@ -102,7 +102,7 @@ const UpdateHotel = () => {
       specification,
     };
 
-    dispatch(updateHotel(formData, id));
+    dispatch(updateHostel(formData, id));
   };
 
   return (
@@ -201,4 +201,4 @@ const UpdateHotel = () => {
     </Fragment>
   );
 };
-export default UpdateHotel;
+export default UpdateHostel;

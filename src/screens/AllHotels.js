@@ -2,10 +2,10 @@ import SideBar from "../components/SideBar";
 import { Fragment, useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
-  deleteHotel,
-  getAllHotels,
-  uploadHotelPicture,
-} from "../redux/actions/hotelAction";
+  deleteHostel,
+  getAllHostels,
+  uploadHostelPicture,
+} from "../redux/actions/hostelAction";
 import Loader from "../components/Loader";
 import { Link } from "react-router-dom";
 import LaunchIcon from "@mui/icons-material/Launch";
@@ -35,19 +35,19 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { setError } from "../redux/slices/appSlice";
 import Meta from "../utils/Meta";
 
-const AllHotels = () => {
+const AllHostels = () => {
   const dispatch = useDispatch();
-  const { isLoading, allHotels } = useSelector((state) => state.hotelState);
+  const { isLoading, allHostels } = useSelector((state) => state.hostelState);
   const [open, setOpen] = useState(false);
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
-  const [hotelRef, setHotelRef] = useState(undefined);
+  const [hostelRef, setHostelRef] = useState(undefined);
   const [images, setImages] = useState([]);
   const [page, setPage] = useState(0);
   const rowsPerPage = 5;
-  const emptyRows = Math.max(0, (1 + page) * rowsPerPage - allHotels?.length);
+  const emptyRows = Math.max(0, (1 + page) * rowsPerPage - allHostels?.length);
 
   useEffect(() => {
-    dispatch(getAllHotels());
+    dispatch(getAllHostels());
   }, [dispatch]);
 
   const handleChangePage = (event, newPage) => {
@@ -61,21 +61,21 @@ const AllHotels = () => {
       formData.append("pictures", image);
     });
 
-    dispatch(uploadHotelPicture(formData, hotelRef._id));
+    dispatch(uploadHostelPicture(formData, hostelRef._id));
     setOpen(!open);
     setImages([]);
-    setHotelRef(undefined);
+    setHostelRef(undefined);
   };
 
   const deleteHandler = () => {
-    dispatch(deleteHotel(hotelRef._id));
+    dispatch(deleteHostel(hostelRef._id));
     setIsDeleteOpen(false);
-    setHotelRef(undefined);
+    setHostelRef(undefined);
   };
 
   return (
     <Fragment>
-      <Meta title="All Hotels" />
+      <Meta title="All Hostels" />
       <div className="flex">
         <SideBar />
         <Fragment>
@@ -101,27 +101,27 @@ const AllHotels = () => {
                   </TableHead>
                   <TableBody>
                     {(rowsPerPage > 2
-                      ? allHotels?.slice(
+                      ? allHostels?.slice(
                           page * rowsPerPage,
                           page * rowsPerPage + rowsPerPage
                         )
-                      : allHotels
-                    )?.map((hotel) => (
-                      <TableRow key={hotel._id} style={{ height: 72.8 }}>
-                        <TableCell align="center">{hotel._id}</TableCell>
-                        <TableCell align="center">{hotel.name}</TableCell>
+                      : allHostels
+                    )?.map((hostel) => (
+                      <TableRow key={hostel._id} style={{ height: 72.8 }}>
+                        <TableCell align="center">{hostel._id}</TableCell>
+                        <TableCell align="center">{hostel.name}</TableCell>
                         <TableCell align="center">
                           <IconButton
                             onClick={() => {
                               setOpen(!open);
-                              setHotelRef(hotel);
+                              setHostelRef(hostel);
                             }}
                           >
                             <AddPhotoAlternateIcon />
                           </IconButton>
                         </TableCell>
                         <TableCell align="center">
-                          <Link to={`/admin/hotel/${hotel._id}/update`}>
+                          <Link to={`/admin/hostel/${hostel._id}/update`}>
                             <IconButton>
                               <EditIcon />
                             </IconButton>
@@ -131,21 +131,21 @@ const AllHotels = () => {
                           <IconButton
                             onClick={() => {
                               setIsDeleteOpen(!isDeleteOpen);
-                              setHotelRef(hotel);
+                              setHostelRef(hostel);
                             }}
                           >
                             <DeleteIcon />
                           </IconButton>
                         </TableCell>
                         <TableCell align="center">
-                          <Link to={`/admin/hotel/${hotel._id}/rooms`}>
+                          <Link to={`/admin/hostel/${hostel._id}/rooms`}>
                             <IconButton>
                               <HolidayVillageIcon />
                             </IconButton>
                           </Link>
                         </TableCell>
                         <TableCell align="center">
-                          <Link to={`/hotel/${hotel._id}`}>
+                          <Link to={`/hostel/${hostel._id}`}>
                             <IconButton>
                               <LaunchIcon />
                             </IconButton>
@@ -163,7 +163,7 @@ const AllHotels = () => {
                     <TableRow>
                       <TablePagination
                         page={page}
-                        count={allHotels?.length}
+                        count={allHostels?.length}
                         rowsPerPageOptions={[]}
                         onPageChange={handleChangePage}
                         rowsPerPage={rowsPerPage}
@@ -224,7 +224,7 @@ const AllHotels = () => {
                       onClick={() => {
                         setOpen(!open);
                         setImages([]);
-                        setHotelRef(undefined);
+                        setHostelRef(undefined);
                       }}
                       className="bg-blue-400 hover:bg-blue-500 py-2 rounded-lg w-24 text-center text-neutral-50  transition duration-200 font-semibold"
                     >
@@ -253,7 +253,7 @@ const AllHotels = () => {
                   <button
                     onClick={() => {
                       setIsDeleteOpen(!isDeleteOpen);
-                      setHotelRef(undefined);
+                      setHostelRef(undefined);
                     }}
                     className="bg-blue-400 hover:bg-blue-500 py-2 rounded-lg w-24 text-center text-neutral-50  transition duration-200 font-semibold"
                   >
@@ -274,4 +274,4 @@ const AllHotels = () => {
     </Fragment>
   );
 };
-export default AllHotels;
+export default AllHostels;

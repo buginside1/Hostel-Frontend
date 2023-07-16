@@ -1,6 +1,6 @@
 import { Fragment, useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getUsersBookings } from "../redux/actions/hotelAction";
+import { getUsersBookings } from "../redux/actions/hostelAction";
 import Loader from "../components/Loader";
 import {
   Table,
@@ -20,7 +20,7 @@ import Meta from "../utils/Meta";
 
 const Bookings = () => {
   const dispatch = useDispatch();
-  const { isLoading, bookings } = useSelector((state) => state.hotelState);
+  const { isLoading, bookings } = useSelector((state) => state.hostelState);
   const [page, setPage] = useState(0);
   const rowsPerPage = 5;
   const emptyRows = Math.max(0, (1 + page) * rowsPerPage - bookings?.length);

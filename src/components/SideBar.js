@@ -161,8 +161,8 @@ const SideBar = () => {
           </Tooltip>
         </ListItem>
         <ListItem disablePadding sx={{ display: "block" }}>
-          <Tooltip title={open ? "" : "All Hotels"} placement="right">
-            <NavLink to="/admin/hotels">
+          <Tooltip title={open ? "" : "All Hostels"} placement="right">
+            <NavLink to="/admin/hostels">
               {({ isActive }) => (
                 <ListItemButton
                   selected={isActive}
@@ -193,7 +193,7 @@ const SideBar = () => {
         </ListItem>
         <ListItem disablePadding sx={{ display: "block" }}>
           <Tooltip title={open ? "" : "Add Hostel"} placement="right">
-            <NavLink to="/admin/hotel/new">
+            <NavLink to="/admin/hostel/new">
               {({ isActive }) => (
                 <ListItemButton
                   selected={isActive}

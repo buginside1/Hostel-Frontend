@@ -16,8 +16,8 @@ import {
 import { Fragment, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { setIsHotelCreated } from "../redux/slices/hotelSlice";
-import { createHotel } from "../redux/actions/hotelAction";
+import { setIsHostelCreated } from "../redux/slices/hostelSlice";
+import { createHostel } from "../redux/actions/hostelAction";
 import Loader from "../components/Loader";
 import Meta from "../utils/Meta";
 
@@ -47,24 +47,24 @@ const CustomSelect = styled(Select)(() => ({
   },
 }));
 
-const CreateHotel = () => {
+const CreateHostel = () => {
   const [specification, setSpecification] = useState([]);
   const [name, setName] = useState("");
   const [location, setLocation] = useState("");
   const [distance, setDistance] = useState("");
   const [description, setDescription] = useState("");
-  const { isHotelCreated, isLoading } = useSelector(
-    (state) => state.hotelState
+  const { isHostelCreated, isLoading } = useSelector(
+    (state) => state.hostelState
   );
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (isHotelCreated) {
-      navigate("/admin/hotels");
-      dispatch(setIsHotelCreated(false));
+    if (isHostelCreated) {
+      navigate("/admin/hostels");
+      dispatch(setIsHostelCreated(false));
     }
-  }, [isHotelCreated, dispatch, navigate]);
+  }, [isHostelCreated, dispatch, navigate]);
 
   const handleChange = (event) => {
     const {
@@ -87,7 +87,7 @@ const CreateHotel = () => {
       specification,
     };
 
-    dispatch(createHotel(formData));
+    dispatch(createHostel(formData));
   };
 
   return (
@@ -186,4 +186,4 @@ const CreateHotel = () => {
     </Fragment>
   );
 };
-export default CreateHotel;
+export default CreateHostel;

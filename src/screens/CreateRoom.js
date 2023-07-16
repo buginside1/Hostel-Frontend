@@ -17,8 +17,8 @@ import {
 import { Fragment, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams, Link } from "react-router-dom";
-import { setIsRoomCreated } from "../redux/slices/hotelSlice";
-import { createRoom, getHotelAction } from "../redux/actions/hotelAction";
+import { setIsRoomCreated } from "../redux/slices/hostelSlice";
+import { createRoom, getHostelAction } from "../redux/actions/hostelAction";
 import Loader from "../components/Loader";
 import NotFound from "./NotFound";
 import Meta from "../utils/Meta";
@@ -61,8 +61,8 @@ const CreateRoom = () => {
   const [name, setName] = useState("");
   const [number, setNumber] = useState("");
   const [PricePerDay, setPricePerDay] = useState("");
-  const { isRoomCreated, isLoading, hotel } = useSelector(
-    (state) => state.hotelState
+  const { isRoomCreated, isLoading, hostel } = useSelector(
+    (state) => state.hostelState
   );
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -70,14 +70,14 @@ const CreateRoom = () => {
 
   useEffect(() => {
     if (isRoomCreated) {
-      navigate(`/admin/hotel/${id}/rooms`);
+      navigate(`/admin/hostel/${id}/rooms`);
       dispatch(setIsRoomCreated(false));
     }
   }, [isRoomCreated, dispatch, navigate, id]);
 
   useEffect(() => {
     if (id) {
-      dispatch(getHotelAction(id));
+      dispatch(getHostelAction(id));
     }
   }, [dispatch, id]);
 
@@ -118,7 +118,7 @@ const CreateRoom = () => {
           <Loader />
         ) : (
           <Fragment>
-            {!hotel ? (
+            {!hostel ? (
               <NotFound />
             ) : (
               <div className="w-[80%] sm:w-[60%] md:w-[70%] mx-auto mt-3">
@@ -126,7 +126,7 @@ const CreateRoom = () => {
                   <div className="flex">
                     <Button
                       onClick={() =>
-                        navigate(`/admin/hotel/${hotel?._id}/rooms`)
+                        navigate(`/admin/hostel/${hostel?._id}/rooms`)
                       }
                       variant="contained"
                       className="!text-gray-100 !bg-blue-400 w-60 !py-3 md:w-min"
@@ -139,7 +139,7 @@ const CreateRoom = () => {
                     <div className="flex gap-4">
                       <h4 className="font-medium">Hostel Name:</h4>
                       <p className="font-normal text-blue-400">
-                        <Link to={`/hotel/${id}`}>{hotel?.name}</Link>
+                        <Link to={`/hostel/${id}`}>{hostel?.name}</Link>
                       </p>
                     </div>
                     <div className="flex gap-4">

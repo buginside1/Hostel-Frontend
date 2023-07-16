@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Navbar from "./components/Navbar";
 import Booking from "./screens/Booking";
 import Home from "./screens/Home";
-import Hotel from "./screens/Hotel";
+import Hostel from "./screens/Hostel";
 import SignIn from "./screens/SignIn";
 import SignUp from "./screens/SignUp";
 import Account from "./screens/Account";
@@ -13,8 +13,8 @@ import Payment from "./screens/Payment";
 import BookingSuccess from "./screens/BookingSuccess";
 import Chat from "./screens/Chat";
 import AllUsers from "./screens/AllUsers";
-import AllHotels from "./screens/AllHotels";
-import CreateHotel from "./screens/CreateHotel";
+import AllHostels from "./screens/AllHostels";
+import CreateHostel from "./screens/CreateHostel";
 import AllBookings from "./screens/AllBookings";
 import Dashboard from "./screens/Dashboard";
 import UpdateProfile from "./screens/UpdateProfile.js";
@@ -26,8 +26,8 @@ import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import BookingDetails from "./screens/BookingDetails";
 import { Alert, Snackbar } from "@mui/material";
-import UpdateHotel from "./screens/UpdateHotel";
-import HotelRooms from "./screens/HotelRooms";
+import UpdateHostel from "./screens/UpdateHostel";
+import HostelRooms from "./screens/HostelRooms";
 import CreateRoom from "./screens/CreateRoom";
 import UpdateRoom from "./screens/UpdateRoom";
 import SingleBookingDetails from "./screens/SingleBookingDetails";
@@ -97,7 +97,7 @@ const App = () => {
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<SignIn />} />
             <Route path="/signup" element={<SignUp />} />
-            <Route path="/hotel/:id" element={<Hotel />} />
+            <Route path="/hostel/:id" element={<Hostel />} />
             {!isStripeLoading && (
               <Route
                 path="/booking/payment"
@@ -191,39 +191,39 @@ const App = () => {
               }
             />
             <Route
-              path="/admin/hotels"
+              path="/admin/hostels"
               element={
                 <ProtectedRoute role="admin">
-                  <AllHotels />
+                  <AllHostels />
                 </ProtectedRoute>
               }
             />
             <Route
-              path="/admin/hotel/new"
+              path="/admin/hostel/new"
               element={
                 <ProtectedRoute role="admin">
-                  <CreateHotel />
+                  <CreateHostel />
                 </ProtectedRoute>
               }
             />
             <Route
-              path="/admin/hotel/:id/update"
+              path="/admin/hostel/:id/update"
               element={
                 <ProtectedRoute role="admin">
-                  <UpdateHotel />
+                  <UpdateHostel />
                 </ProtectedRoute>
               }
             />
             <Route
-              path="/admin/hotel/:id/rooms"
+              path="/admin/hostel/:id/rooms"
               element={
                 <ProtectedRoute role="admin">
-                  <HotelRooms />
+                  <HostelRooms />
                 </ProtectedRoute>
               }
             />
             <Route
-              path="/admin/hotel/:id/room/new"
+              path="/admin/hostel/:id/room/new"
               element={
                 <ProtectedRoute role="admin">
                   <CreateRoom />

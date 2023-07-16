@@ -3,9 +3,9 @@ import { Fragment, useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   deleteRoom,
-  getHotelAction,
+  getHostelAction,
   uploadRoomPicture,
-} from "../redux/actions/hotelAction";
+} from "../redux/actions/hostelAction";
 import Loader from "../components/Loader";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -36,22 +36,22 @@ import { setError } from "../redux/slices/appSlice";
 import NotFound from "./NotFound";
 import Meta from "../utils/Meta";
 
-const HotelRooms = () => {
+const HostelRooms = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { id } = useParams();
-  const { isLoading, hotel } = useSelector((state) => state.hotelState);
+  const { isLoading, hostel } = useSelector((state) => state.hostelState);
   const [open, setOpen] = useState(false);
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
   const [roomRef, setRoomRef] = useState(undefined);
   const [images, setImages] = useState([]);
   const [page, setPage] = useState(0);
   const rowsPerPage = 5;
-  const emptyRows = Math.max(0, (1 + page) * rowsPerPage - hotel?.rooms.length);
+  const emptyRows = Math.max(0, (1 + page) * rowsPerPage - hostel?.rooms.length);
 
   useEffect(() => {
     if (id) {
-      dispatch(getHotelAction(id));
+      dispatch(getHostelAction(id));
     }
   }, [dispatch, id]);
 
@@ -79,7 +79,7 @@ const HotelRooms = () => {
 
   return (
     <Fragment>
-      <Meta title={`${hotel?.name}'s Rooms`} />
+      <Meta title={`${hostel?.name}'s Rooms`} />
       <div className="flex">
         <SideBar />
         <Fragment>
@@ -87,14 +87,14 @@ const HotelRooms = () => {
             <Loader />
           ) : (
             <Fragment>
-              {!hotel ? (
+              {!hostel ? (
                 <NotFound />
               ) : (
                 <div className="w-[80%] sm:w-[60%] md:w-[70%] mx-auto mt-3">
                   <div className="flex flex-col md:flex-row gap-6 md:gap-4 justify-between">
                     <div className="flex gap-4">
                       <Button
-                        onClick={() => navigate("/admin/hotels")}
+                        onClick={() => navigate("/admin/hostels")}
                         variant="contained"
                         className="!text-gray-100 !bg-blue-400"
                       >
@@ -105,7 +105,7 @@ const HotelRooms = () => {
                         Back
                       </Button>
                       <Button
-                        onClick={() => navigate(`/admin/hotel/${id}/room/new`)}
+                        onClick={() => navigate(`/admin/hostel/${id}/room/new`)}
                         variant="outlined"
                         className="!border-blue-400 !text-blue-400"
                       >
@@ -117,7 +117,7 @@ const HotelRooms = () => {
                       <div className="flex gap-4">
                         <h4 className="font-medium">Hostel Name:</h4>
                         <p className="font-normal text-blue-400">
-                          <Link to={`/hotel/${id}`}>{hotel?.name}</Link>
+                          <Link to={`/hostel/${id}`}>{hostel?.name}</Link>
                         </p>
                       </div>
                       <div className="flex gap-4">
@@ -143,11 +143,11 @@ const HotelRooms = () => {
                       </TableHead>
                       <TableBody>
                         {(rowsPerPage > 2
-                          ? hotel?.rooms.slice(
+                          ? hostel?.rooms.slice(
                               page * rowsPerPage,
                               page * rowsPerPage + rowsPerPage
                             )
-                          : hotel.rooms
+                          : hostel.rooms
                         )?.map((room) => (
                           <TableRow key={room._id} style={{ height: 72.8 }}>
                             <TableCell align="center">{room._id}</TableCell>
@@ -192,7 +192,7 @@ const HotelRooms = () => {
                         <TableRow>
                           <TablePagination
                             page={page}
-                            count={hotel.rooms.length}
+                            count={hostel.rooms.length}
                             rowsPerPageOptions={[]}
                             onPageChange={handleChangePage}
                             rowsPerPage={rowsPerPage}
@@ -308,4 +308,4 @@ const HotelRooms = () => {
     </Fragment>
   );
 };
-export default HotelRooms;
+export default HostelRooms;

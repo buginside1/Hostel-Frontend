@@ -1,7 +1,7 @@
 import SideBar from "../components/SideBar";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllUsers } from "../redux/actions/userAction";
-import { getAllBookings, getAllHotels } from "../redux/actions/hotelAction";
+import { getAllBookings, getAllHostels } from "../redux/actions/hostelAction";
 import { Fragment, useEffect } from "react";
 import { Card, CardContent } from "@mui/material";
 import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
@@ -32,13 +32,13 @@ ChartJS.register(
 const Dashboard = () => {
   const dispatch = useDispatch();
   const allUsers = useSelector((state) => state.userState.allUsers);
-  const { allBookings, allHotels } = useSelector((state) => state.hotelState);
+  const { allBookings, allHostels } = useSelector((state) => state.hostelState);
   const allDates = allBookings?.map((booking) => booking.createdAt);
 
   useEffect(() => {
     dispatch(getAllUsers());
     dispatch(getAllBookings());
-    dispatch(getAllHotels());
+    dispatch(getAllHostels());
   }, [dispatch]);
 
   const generateMonthlyBookingCount = (dates) => {
@@ -117,14 +117,14 @@ const Dashboard = () => {
               <CardContent className="w-full flex justify-between items-center sm:aspect-square sm:flex-col-reverse sm:justify-center">
                 <div className="text-center">
                   <Link
-                    to="/admin/hotels"
+                    to="/admin/hostels"
                     className="text-3xl font-medium text-blue-500"
                   >
                     {" "}
-                    {allHotels.length}
+                    {allHostels.length}
                   </Link>
                   <p className="text-gray-500 text-md">
-                    {allHotels.length > 1 ? "Hostels" : "Hotel"}
+                    {allHostels.length > 1 ? "Hostels" : "Hostel"}
                   </p>
                 </div>
                 <ApartmentIcon className="text-blue-400 !text-4xl mb-4" />

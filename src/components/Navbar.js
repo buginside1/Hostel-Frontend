@@ -4,7 +4,7 @@ import Popover from "@mui/material/Popover";
 import { Fragment, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { logoutAction } from "../redux/actions/userAction";
-import { setHasSearched } from "../redux/slices/hotelSlice";
+import { setHasSearched } from "../redux/slices/hostelSlice";
 
 const Navbar = () => {
   const navigate = useNavigate();

@@ -17,8 +17,8 @@ import {
 import { Fragment, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams, Link } from "react-router-dom";
-import { setIsRoomUpdated } from "../redux/slices/hotelSlice";
-import { getRoomAction, updateRoom } from "../redux/actions/hotelAction";
+import { setIsRoomUpdated } from "../redux/slices/hostelSlice";
+import { getRoomAction, updateRoom } from "../redux/actions/hostelAction";
 import Loader from "../components/Loader";
 import NotFound from "./NotFound";
 import Meta from "../utils/Meta";
@@ -62,7 +62,7 @@ const UpdateRoom = () => {
   const [number, setNumber] = useState("");
   const [PricePerDay, setPricePerDay] = useState("");
   const { isRoomUpdated, isLoading, room } = useSelector(
-    (state) => state.hotelState
+    (state) => state.hostelState
   );
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -70,7 +70,7 @@ const UpdateRoom = () => {
 
   useEffect(() => {
     if (isRoomUpdated) {
-      navigate(`/admin/hotel/${id}/rooms`);
+      navigate(`/admin/hostel/${id}/rooms`);
       dispatch(setIsRoomUpdated(false));
     }
   }, [isRoomUpdated, dispatch, navigate, id]);
@@ -135,7 +135,7 @@ const UpdateRoom = () => {
                   <div className="flex">
                     <Button
                       onClick={() =>
-                        navigate(`/admin/hotel/${room?.hotel._id}/rooms`)
+                        navigate(`/admin/hostel/${room?.hostel._id}/rooms`)
                       }
                       variant="contained"
                       className="!text-gray-100 !bg-blue-400 w-60 !py-3 md:w-min"
@@ -148,8 +148,8 @@ const UpdateRoom = () => {
                     <div className="flex gap-4">
                       <h4 className="font-medium">Hostel Name:</h4>
                       <p className="font-normal text-blue-400">
-                        <Link to={`/hotel/${room?.hotel._id}`}>
-                          {room?.hotel.name}
+                        <Link to={`/hostel/${room?.hostel._id}`}>
+                          {room?.hostel.name}
                         </Link>
                       </p>
                     </div>

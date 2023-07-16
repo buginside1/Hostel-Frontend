@@ -10,17 +10,17 @@ import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
 import { addDays, format } from "date-fns";
 import {
-  searchHotelsAction,
-  getFeturedHotels,
-} from "../redux/actions/hotelAction";
+  searchHostelsAction,
+  getFeturedHostels,
+} from "../redux/actions/hostelAction";
 import { useDispatch, useSelector } from "react-redux";
-import HotelCard from "../components/HotelCard";
+import HostelCard from "../components/HostelCard";
 import Meta from "../utils/Meta";
 
 const Home = () => {
   const dispatch = useDispatch();
-  const { hotels, isLoading, hasSearched } = useSelector(
-    (state) => state.hotelState
+  const { hostels, isLoading, hasSearched } = useSelector(
+    (state) => state.hostelState
   );
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isPersonOpen, setIsPersonOpen] = useState(false);
@@ -44,7 +44,7 @@ const Home = () => {
     setIsSearchOpen(false);
 
     dispatch(
-      searchHotelsAction({
+      searchHostelsAction({
         location: keyword,
       })
     );
@@ -55,7 +55,7 @@ const Home = () => {
 
   useEffect(() => {
     if (!hasSearched) {
-      dispatch(getFeturedHotels());
+      dispatch(getFeturedHostels());
     }
   }, [dispatch, hasSearched]);
 
@@ -274,19 +274,19 @@ const Home = () => {
               ) : (
                 <div className="h-96">
                   <h2 className="text-xl text-center mb-4">Search </h2>
-                  {hotels.length < 1 && (
+                  {hostels.length < 1 && (
                     <p className="text-center text-gray-600 my-48">
                       No hostel available in this area
                     </p>
                   )}
-                  {hotels.length > 0 && (
+                  {hostels.length > 0 && (
                     <p className="text-sm">
-                      {hotels.length} {hotels.length === 1 ? "hotel" : "hotels"}{" "}
+                      {hostels.length} {hostels.length === 1 ? "hostel" : "hostels"}{" "}
                       found.
                     </p>
                   )}
-                  {hotels?.map((hotel) => (
-                    <HotelCard key={hotel._id} hotel={hotel} />
+                  {hostels?.map((hostel) => (
+                    <HostelCard key={hostel._id} hostel={hostel} />
                   ))}
                 </div>
               )}
@@ -303,8 +303,8 @@ const Home = () => {
                   <h2 className="text-xl font-medium mb-6 text-center">
                     Featured
                   </h2>
-                  {hotels?.map((hotel) => (
-                    <HotelCard key={hotel._id} hotel={hotel} />
+                  {hostels?.map((hostel) => (
+                    <HostelCard key={hostel._id} hostel={hostel} />
                   ))}
                 </div>
               )}
