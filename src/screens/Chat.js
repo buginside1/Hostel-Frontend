@@ -16,7 +16,7 @@ const Chat = () => {
 
     useEffect(() => {
         if (!socket) {
-            setSocket(io('/'))
+            setSocket(io('https://hostel-yq4k.onrender.com'))
         }
     }, []) 
 
