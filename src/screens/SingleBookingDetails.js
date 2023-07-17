@@ -117,14 +117,14 @@ const SingleBookingDetails = () => {
                       </span>
                       <span className="font-mono">{booking?.room.type}</span>
                     </div>
-                    <div className="ml-8 flex mb-4">
+                    {/* <div className="ml-8 flex mb-4">
                       <span className="font-medium inline-block w-28">
                         PricePerDay(per day):
                       </span>
                       <span className="font-mono">
                         {booking?.room.PricePerDay} Rs
                       </span>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
                 <div className="flex flex-col items-center">
@@ -160,7 +160,7 @@ const SingleBookingDetails = () => {
                         className="py-2 px-1 sm:px-2 rounded-md border border-solid border-gray-400 text-gray-700 font-mono break-all resize-none"
                       />
                     </div>
-                    <div className="ml-8 flex mb-4">
+                    {/* <div className="ml-8 flex mb-4">
                       <span className="font-medium inline-block  w-28">
                         PricePerDay({dates?.length}):
                       </span>
@@ -171,7 +171,7 @@ const SingleBookingDetails = () => {
                         Vat:
                       </span>
                       <span className="font-mono">{vat} Rs</span>
-                    </div>
+                    </div> */}
                     <div className="ml-8 flex mb-4">
                       <span className="font-medium inline-block w-28">
                         Total Price:
